@@ -6,6 +6,7 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
         Welcome to ASP.NET! ik ben tibo toch even testen
+        En nog een laatste test!
     </h2>
     <p>
         To learn more about ASP.NET visit <a href="http://www.asp.net" title="ASP.NET Website">www.asp.net</a>.
