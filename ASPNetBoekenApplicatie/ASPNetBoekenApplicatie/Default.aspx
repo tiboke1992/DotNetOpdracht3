@@ -18,13 +18,45 @@
             EntityTypeName="" Select="new (categorieID, naam)" TableName="Categories">
         </asp:LinqDataSource>
         <br />
-        Uitgever: 
+        Uitgever:
         <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" 
             DataSourceID="uitgever_id" DataTextField="naam" DataValueField="uitgeverID">
         </asp:DropDownList>
         <asp:LinqDataSource ID="uitgever_id" runat="server" 
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" Select="new (uitgeverID, naam)" TableName="Uitgevers">
+        </asp:LinqDataSource>
+        ISBN nummer:
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
+            AllowSorting="True" AutoGenerateColumns="False" DataSourceID="boeken_links_ids">
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="isbn" HeaderText="isbn" ReadOnly="True" 
+                    SortExpression="isbn" />
+                <asp:BoundField DataField="titel" HeaderText="titel" ReadOnly="True" 
+                    SortExpression="titel" />
+                <asp:BoundField DataField="aankoopprijs" HeaderText="aankoopprijs" 
+                    ReadOnly="True" SortExpression="aankoopprijs" />
+                <asp:TemplateField HeaderText="categorie">
+                <ItemTemplate>
+                <%# Eval("Categorie.naam") %>
+                </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="uitgever">
+                <ItemTemplate>
+                <%# Eval("Uitgever.naam") %>
+                </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+        <asp:LinqDataSource ID="boeken_links_ids" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" 
+            Select="new (id, isbn, titel, aankoopprijs, Uitgever, Uitgever.uitgeverID, Uitgever.naam, Categorie, Categorie.categorieID, Categorie.naam)" 
+            TableName="Boeks">
         </asp:LinqDataSource>
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
