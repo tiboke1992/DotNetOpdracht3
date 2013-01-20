@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Boeken" Class="BoekenLinqToSqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Boeken.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BoekenConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Boek" Member="Boeks">
+    <Type Name="Boek">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="isbn" Type="System.String" DbType="Char(13) NOT NULL" CanBeNull="false" />
+      <Column Name="titel" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="aankoopprijs" Type="System.Decimal" DbType="Decimal(8,3) NOT NULL" CanBeNull="false" />
+      <Column Name="categorieID" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="uitgeverID" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Association Name="Boek_BoekBoekenlijst" Member="BoekBoekenlijsts" ThisKey="id" OtherKey="id_boek" Type="BoekBoekenlijst" />
+      <Association Name="Categorie_Boek" Member="Categorie" ThisKey="categorieID" OtherKey="categorieID" Type="Categorie" IsForeignKey="true" />
+      <Association Name="Uitgever_Boek" Member="Uitgever" ThisKey="uitgeverID" OtherKey="uitgeverID" Type="Uitgever" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BoekBoekenlijst" Member="BoekBoekenlijsts">
+    <Type Name="BoekBoekenlijst">
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="id_boek" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="huurprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
+      <Column Name="schoolprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
+      <Column Name="wordtverhuurd" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="categorieID" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Association Name="Boek_BoekBoekenlijst" Member="Boek" ThisKey="id_boek" OtherKey="id" Type="Boek" IsForeignKey="true" />
+      <Association Name="Boekenlijst_BoekBoekenlijst" Member="Boekenlijst" ThisKey="klas" OtherKey="klas" Type="Boekenlijst" IsForeignKey="true" />
+      <Association Name="Categorie_BoekBoekenlijst" Member="Categorie" ThisKey="categorieID" OtherKey="categorieID" Type="Categorie" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Boekenlijst" Member="Boekenlijsts">
+    <Type Name="Boekenlijst">
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="statusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="opmerking" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="laatstewijziging" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="aantalLeerlingen" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Boekenlijst_BoekBoekenlijst" Member="BoekBoekenlijsts" ThisKey="klas" OtherKey="klas" Type="BoekBoekenlijst" />
+      <Association Name="Boekenlijst_SchoolartikelBoekenlijst" Member="SchoolartikelBoekenlijsts" ThisKey="klas" OtherKey="klas" Type="SchoolartikelBoekenlijst" />
+      <Association Name="Boekenlijst_Titulari" Member="Titularis" ThisKey="klas" OtherKey="klas" Type="Titulari" />
+      <Association Name="Status_Boekenlijst" Member="Status" ThisKey="statusID" OtherKey="statusID" Type="Status" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categorie" Member="Categories">
+    <Type Name="Categorie">
+      <Column Name="categorieID" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="naam" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Categorie_Boek" Member="Boeks" ThisKey="categorieID" OtherKey="categorieID" Type="Boek" />
+      <Association Name="Categorie_BoekBoekenlijst" Member="BoekBoekenlijsts" ThisKey="categorieID" OtherKey="categorieID" Type="BoekBoekenlijst" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Schoolartikel" Member="Schoolartikels">
+    <Type Name="Schoolartikel">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="naam" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="prijs" Type="System.Decimal" DbType="Decimal(8,3) NOT NULL" CanBeNull="false" />
+      <Association Name="Schoolartikel_SchoolartikelBoekenlijst" Member="SchoolartikelBoekenlijsts" ThisKey="id" OtherKey="id_schoolartikel" Type="SchoolartikelBoekenlijst" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SchoolartikelBoekenlijst" Member="SchoolartikelBoekenlijsts">
+    <Type Name="SchoolartikelBoekenlijst">
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="id_schoolartikel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="prijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
+      <Association Name="Boekenlijst_SchoolartikelBoekenlijst" Member="Boekenlijst" ThisKey="klas" OtherKey="klas" Type="Boekenlijst" IsForeignKey="true" />
+      <Association Name="Schoolartikel_SchoolartikelBoekenlijst" Member="Schoolartikel" ThisKey="id_schoolartikel" OtherKey="id" Type="Schoolartikel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Status" Member="Status">
+    <Type Name="Status">
+      <Column Name="statusID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="naam" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Status_Boekenlijst" Member="Boekenlijsts" ThisKey="statusID" OtherKey="statusID" Type="Boekenlijst" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Titularis" Member="Titularis">
+    <Type Name="Titulari">
+      <Column Name="username" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Association Name="Boekenlijst_Titulari" Member="Boekenlijst" ThisKey="klas" OtherKey="klas" Type="Boekenlijst" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Uitgever" Member="Uitgevers">
+    <Type Name="Uitgever">
+      <Column Name="uitgeverID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="naam" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Uitgever_Boek" Member="Boeks" ThisKey="uitgeverID" OtherKey="uitgeverID" Type="Boek" />
+    </Type>
+  </Table>
+</Database>

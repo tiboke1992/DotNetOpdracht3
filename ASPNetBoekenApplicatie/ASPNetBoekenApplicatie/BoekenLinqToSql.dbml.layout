@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="BoekenLinqToSql">
+  <DataContextMoniker Name="/BoekenLinqToSqlDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b783ea12-db48-4f68-91b5-4d188672d6ca" absoluteBounds="0.625, 1.125, 2, 1.9631982427090406">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Boek" />
+      <nestedChildShapes>
+        <elementListCompartment Id="30f1ed63-47cb-465c-9716-e703dee35d4f" absoluteBounds="0.64000000059604645, 1.5850000008940697, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" absoluteBounds="3.125, 1.125, 2, 1.9631982427090406">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/BoekBoekenlijst" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40ce488c-597b-40cc-8d70-27476f4165ba" absoluteBounds="3.1400000005960464, 1.5850000008940697, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eea2d848-e46d-4be4-836f-77282811786e" absoluteBounds="5.75, 1.125, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a23b8eb7-060d-47bb-a11c-d6350c06f436" absoluteBounds="5.7650000005960464, 1.5850000008940697, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="91810916-6f6b-4af1-85c3-f37626bbbf85" absoluteBounds="1.875, 3.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Categorie" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6a49d9bb-8147-4faa-9684-02e09cb82ebe" absoluteBounds="1.8900000005960465, 3.8350000008940697, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="20614009-ef79-47d7-861b-836e006fe93a" absoluteBounds="9.25, 3.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Schoolartikel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4396f41f-e6af-46df-b846-e183c57988d1" absoluteBounds="9.265, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0c06c23-5eb6-466e-bde3-250c3f46d1ed" absoluteBounds="6.875, 3.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/SchoolartikelBoekenlijst" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d973ae45-9293-4ab5-a4e6-02ee7d6d7abc" absoluteBounds="6.8900000000000006, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2e0f16d8-3adc-4631-8074-aae1eef47f38" absoluteBounds="4.625, 3.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Status" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a0882ce3-f4bc-4119-bac9-a962c36b56b6" absoluteBounds="4.6400000005960464, 3.8350000008940697, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6fdaeeb1-d6a4-4fa2-af2d-130457a39f79" absoluteBounds="8.125, 1.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Titulari" />
+      <nestedChildShapes>
+        <elementListCompartment Id="56d4da38-948e-428e-8808-2e926ba10aa6" absoluteBounds="8.14, 1.5850000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1b8b3905-5652-4e68-ae16-49426a9d9266" absoluteBounds="0.75, 4.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/BoekenLinqToSqlDataContext/Uitgever" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8232defd-9c65-432a-bfbc-87e238d72f78" absoluteBounds="0.76500000059604645, 5.21000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 2.10659912135452); (3.125 : 2.10659912135452)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boek/Boek_BoekBoekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
+        <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_BoekBoekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
+        <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.25 : 3.375); (2.25 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Categorie/Categorie_Boek" />
+      <nodes>
+        <classShapeMoniker Id="91810916-6f6b-4af1-85c3-f37626bbbf85" />
+        <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.5 : 3.375); (3.5 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Categorie/Categorie_BoekBoekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="91810916-6f6b-4af1-85c3-f37626bbbf85" />
+        <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.1875 : 3.375); (6.1875 : 2.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Status/Status_Boekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="2e0f16d8-3adc-4631-8074-aae1eef47f38" />
+        <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.28125 : 4.75); (1.28125 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Uitgever/Uitgever_Boek" />
+      <nodes>
+        <classShapeMoniker Id="1b8b3905-5652-4e68-ae16-49426a9d9266" />
+        <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.3125 : 2.89589680989583); (7.3125 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_SchoolartikelBoekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
+        <classShapeMoniker Id="b0c06c23-5eb6-466e-bde3-250c3f46d1ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.25 : 3.94314697265625); (8.875 : 3.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Schoolartikel/Schoolartikel_SchoolartikelBoekenlijst" />
+      <nodes>
+        <classShapeMoniker Id="20614009-ef79-47d7-861b-836e006fe93a" />
+        <classShapeMoniker Id="b0c06c23-5eb6-466e-bde3-250c3f46d1ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.75 : 1.72199625651042); (8.125 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_Titulari" />
+      <nodes>
+        <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
+        <classShapeMoniker Id="6fdaeeb1-d6a4-4fa2-af2d-130457a39f79" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
