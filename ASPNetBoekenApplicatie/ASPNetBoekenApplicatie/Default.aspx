@@ -6,7 +6,8 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <p>
         Titel:
-        <asp:TextBox ID="txtTitel" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtTitel" runat="server">
+        </asp:TextBox>
         <br />
         Categorie:
         <asp:DropDownList ID="categorie_dropdown" runat="server"
