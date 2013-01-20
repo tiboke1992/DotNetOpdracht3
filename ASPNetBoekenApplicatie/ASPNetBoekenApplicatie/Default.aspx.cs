@@ -58,10 +58,15 @@ namespace ASPNetBoekenApplicatie
         private Boolean ControleVanVelden(String klasNaam, String aantalLeerlingen) {
             Boolean result = false;
             if (klasNaam != null && aantalLeerlingen != null && !klasNaam.Equals("") && !aantalLeerlingen.Equals("") && klasNaam.Length < 3) {
-                int number;
-                Boolean isNumber = int.TryParse(aantalLeerlingen, out number);
-                if (isNumber && number > 0) {
-                    result = true;
+                //controle of klas al bestaat
+                IEnumerable<Boekenlijst> blist = dc.Boekenlijsts.Where(x => x.klas == klasNaam);
+                if (blist == null || blist.Count() == 0) {
+                    int number;
+                    Boolean isNumber = int.TryParse(aantalLeerlingen, out number);
+                    if (isNumber && number > 0)
+                    {
+                        result = true;
+                    }
                 }
             }
             return result;
@@ -91,10 +96,12 @@ namespace ASPNetBoekenApplicatie
             lblError.Text = "Er is een fout opget bij de controle van de gegevens mogelijk door: <br />";
             lblError.Text += "<ul>";
             lblError.Text += "<li>Naam of aantal leerlingen is niet ingevuld</li>";
+            lblError.Text += "<li>Klas bestaat al</li>";
             lblError.Text += "<li>Naam is langer dan 3 tekens</li>";
             lblError.Text += "<li>Aantal leerlingen is negatief of geen heel getal</li>";
             lblError.Text += "<li>Error met de databank</li>";
             lblError.Text += "</ul>";
+            lblCorrect.Text = "";
         }
 
         private void gebaseerdOpKlas() {
