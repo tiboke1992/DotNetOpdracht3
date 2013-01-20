@@ -71,7 +71,14 @@
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" 
             Select="new (id, isbn, titel, aankoopprijs, Uitgever, Uitgever.uitgeverID, Uitgever.naam, Categorie, Categorie.categorieID, Categorie.naam)" 
-            TableName="Boeks">
+            TableName="Boeks" onselecting="boeken_links_ids_Selecting"
+            Where="titel.contains(@titelParameter) and isbn.Contains(@isbnParameter) and Categorie.categorieID.Equals(@categorieParameter) and Uitgever.uitgeverID.Equals(@uitgeverParameter)">
+            <WhereParameters>
+            <asp:ControlParameter ControlID="txtTitel" Name="titelParameter" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
+            <asp:ControlParameter ControlID="txtISBN" Name="isbnParameter" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
+            <asp:ControlParameter ControlID="categorie_dropdown" Name="categorieParameter" PropertyName="SelectedValue" Type="String" DefaultValue="alle" />
+            <asp:ControlParameter ControlID="uitgever_dropdown" Name="uitgeverParameter" PropertyName="SelectedValue" Type="String" DefaultValue="alle" />
+            </WhereParameters>
         </asp:LinqDataSource>
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
