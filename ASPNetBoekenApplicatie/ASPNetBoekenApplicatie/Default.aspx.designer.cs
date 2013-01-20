@@ -13,22 +13,22 @@ namespace ASPNetBoekenApplicatie {
     public partial class _Default {
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtTitel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtTitel;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// categorie_dropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList categorie_dropdown;
         
         /// <summary>
         /// categorieen_Ids control.
@@ -40,13 +40,13 @@ namespace ASPNetBoekenApplicatie {
         protected global::System.Web.UI.WebControls.LinqDataSource categorieen_Ids;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// uitgever_dropdown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList uitgever_dropdown;
         
         /// <summary>
         /// uitgever_id control.
@@ -58,13 +58,13 @@ namespace ASPNetBoekenApplicatie {
         protected global::System.Web.UI.WebControls.LinqDataSource uitgever_id;
         
         /// <summary>
-        /// TextBox2 control.
+        /// txtISBN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtISBN;
         
         /// <summary>
         /// GridView1 control.

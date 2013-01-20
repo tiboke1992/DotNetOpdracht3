@@ -6,34 +6,36 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <p>
         Titel:
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtTitel" runat="server"></asp:TextBox>
         <br />
         Categorie:
-        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
+        <asp:DropDownList ID="categorie_dropdown" runat="server"
             DataSourceID="categorieen_Ids" DataTextField="naam" 
-            DataValueField="categorieID">
+            DataValueField="categorieID" 
+            AutoPostBack="True" OnDataBound="categorie_dropdown_databound">
         </asp:DropDownList>
         <asp:LinqDataSource ID="categorieen_Ids" runat="server" 
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
-            EntityTypeName="" Select="new (categorieID, naam)" TableName="Categories">
+            EntityTypeName="" Select="new (categorieID, naam)" TableName="Categories"> 
         </asp:LinqDataSource>
         <br />
         Uitgever:
-        <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" 
-            DataSourceID="uitgever_id" DataTextField="naam" DataValueField="uitgeverID">
+        <asp:DropDownList ID="uitgever_dropdown" runat="server" AutoPostBack="True" 
+            DataSourceID="uitgever_id" DataTextField="naam" DataValueField="uitgeverID"
+            OnDataBound="uitgever_dropdown_databound">
         </asp:DropDownList>
         <asp:LinqDataSource ID="uitgever_id" runat="server" 
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" Select="new (uitgeverID, naam)" TableName="Uitgevers">
         </asp:LinqDataSource>
         ISBN nummer:
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtISBN" runat="server"></asp:TextBox>
         <br />
         <br />
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
             DataSourceID="boeken_links_ids" CellPadding="4" ForeColor="#333333" 
-            GridLines="None" Width="300px">
+            GridLines="None" PageSize="5" Width="200px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
