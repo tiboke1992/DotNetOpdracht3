@@ -48,14 +48,10 @@ namespace ASPNetBoekenApplicatie
             if (ControleVanVelden(klasNaam, aantalLeerlingen))
             {
                 createKlas(klasNaam, aantalLeerlingen);
+                gebaseerdOpKlas();
             }
             else {
-                lblError.Text = "Er is een fout opget bij de controle van de gegevens mogelijk door: <br />";
-                lblError.Text += "<ul>";
-                lblError.Text += "<li>Naam of aantal leerlingen is niet ingevuld</li>";
-                lblError.Text += "<li>Naam is langer dan 3 tekens</li>";
-                lblError.Text += "<li>Aantal leerlingen is negatief of geen heel getal</li>";
-                lblError.Text += "</ul>";
+                showKlasErrorMessage();
             }
         }
 
@@ -88,6 +84,38 @@ namespace ASPNetBoekenApplicatie
             }
             catch (LinqDataSourceValidationException e) {
                 lblError.Text = "Er was een probleem bij toevoegen van de klas!";
+            }
+        }
+
+        private void showKlasErrorMessage() {
+            lblError.Text = "Er is een fout opget bij de controle van de gegevens mogelijk door: <br />";
+            lblError.Text += "<ul>";
+            lblError.Text += "<li>Naam of aantal leerlingen is niet ingevuld</li>";
+            lblError.Text += "<li>Naam is langer dan 3 tekens</li>";
+            lblError.Text += "<li>Aantal leerlingen is negatief of geen heel getal</li>";
+            lblError.Text += "<li>Error met de databank</li>";
+            lblError.Text += "</ul>";
+        }
+
+        private void gebaseerdOpKlas() {
+            if (cbBasedOn.Checked == true) {
+                List<BoekBoekenlijst> onzeLijst = new List<BoekBoekenlijst>();
+                IEnumerable<BoekBoekenlijst> bblijst = dc.BoekBoekenlijsts.Where(x => x.klas == ddlGebaseerd.SelectedValue);
+                if (bblijst.Count() != 0) {
+                    foreach (BoekBoekenlijst bb in bblijst) {
+                        bb.klas = txtKlasNaam.Text;
+                        onzeLijst.Add(bb);
+                    }
+                }
+                dc.BoekBoekenlijsts.InsertAllOnSubmit(onzeLijst);
+                try
+                {
+                    dc.SubmitChanges();
+                }
+                catch (LinqDataSourceValidationException e)
+                {
+                    showKlasErrorMessage();
+                }
             }
         }
 

@@ -56,63 +56,63 @@
         <elementListCompartment Id="8232defd-9c65-432a-bfbc-87e238d72f78" absoluteBounds="0.76500000059604645, 5.21000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 2.10659912135452); (3.125 : 2.10659912135452)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.625 : 2.10659912135452); (3.125 : 2.10659912135452)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boek/Boek_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
         <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
         <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.25 : 3.375); (2.25 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.25 : 3.375); (2.25 : 3.08819824270904)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Categorie/Categorie_Boek" />
       <nodes>
         <classShapeMoniker Id="91810916-6f6b-4af1-85c3-f37626bbbf85" />
         <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.5 : 3.375); (3.5 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.5 : 3.375); (3.5 : 3.08819824270904)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Categorie/Categorie_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="91810916-6f6b-4af1-85c3-f37626bbbf85" />
         <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.1875 : 3.375); (6.1875 : 2.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.1875 : 3.375); (6.1875 : 2.89589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Status/Status_Boekenlijst" />
       <nodes>
         <classShapeMoniker Id="2e0f16d8-3adc-4631-8074-aae1eef47f38" />
         <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.28125 : 4.75); (1.28125 : 3.08819824270904)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.28125 : 4.75); (1.28125 : 3.08819824270904)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Uitgever/Uitgever_Boek" />
       <nodes>
         <classShapeMoniker Id="1b8b3905-5652-4e68-ae16-49426a9d9266" />
         <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.3125 : 2.89589680989583); (7.3125 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.3125 : 2.89589680989583); (7.3125 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_SchoolartikelBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
         <classShapeMoniker Id="b0c06c23-5eb6-466e-bde3-250c3f46d1ed" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.25 : 3.94314697265625); (8.875 : 3.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.25 : 3.94314697265625); (8.875 : 3.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Schoolartikel/Schoolartikel_SchoolartikelBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="20614009-ef79-47d7-861b-836e006fe93a" />
         <classShapeMoniker Id="b0c06c23-5eb6-466e-bde3-250c3f46d1ed" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.75 : 1.72199625651042); (8.125 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.75 : 1.72199625651042); (8.125 : 1.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_Titulari" />
       <nodes>
         <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />

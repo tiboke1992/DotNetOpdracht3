@@ -90,7 +90,7 @@
 &nbsp;&nbsp;&nbsp;
         <asp:CheckBox ID="cbBasedOn" runat="server" Text=" " />
         Gebaseerd op klaslijst:
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="klassen" 
+        <asp:DropDownList ID="ddlGebaseerd" runat="server" DataSourceID="klassen" 
             DataTextField="klas" DataValueField="klas">
         </asp:DropDownList>
         <asp:LinqDataSource ID="klassen" runat="server" 

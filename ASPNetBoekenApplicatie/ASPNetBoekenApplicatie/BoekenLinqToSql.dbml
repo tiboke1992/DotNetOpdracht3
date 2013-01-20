@@ -15,8 +15,8 @@
   </Table>
   <Table Name="dbo.BoekBoekenlijst" Member="BoekBoekenlijsts">
     <Type Name="BoekBoekenlijst">
-      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="id_boek" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_boek" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="huurprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
       <Column Name="schoolprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
       <Column Name="wordtverhuurd" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />

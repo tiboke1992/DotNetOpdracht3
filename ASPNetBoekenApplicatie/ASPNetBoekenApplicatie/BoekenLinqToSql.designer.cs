@@ -33,6 +33,9 @@ namespace ASPNetBoekenApplicatie
     partial void InsertBoek(Boek instance);
     partial void UpdateBoek(Boek instance);
     partial void DeleteBoek(Boek instance);
+    partial void InsertBoekBoekenlijst(BoekBoekenlijst instance);
+    partial void UpdateBoekBoekenlijst(BoekBoekenlijst instance);
+    partial void DeleteBoekBoekenlijst(BoekBoekenlijst instance);
     partial void InsertBoekenlijst(Boekenlijst instance);
     partial void UpdateBoekenlijst(Boekenlijst instance);
     partial void DeleteBoekenlijst(Boekenlijst instance);
@@ -171,6 +174,8 @@ namespace ASPNetBoekenApplicatie
 		
 		private string _uitgeverID;
 		
+		private EntitySet<BoekBoekenlijst> _BoekBoekenlijsts;
+		
 		private EntityRef<Categorie> _Categorie;
 		
 		private EntityRef<Uitgever> _Uitgever;
@@ -195,6 +200,7 @@ namespace ASPNetBoekenApplicatie
 		
 		public Boek()
 		{
+			this._BoekBoekenlijsts = new EntitySet<BoekBoekenlijst>(new Action<BoekBoekenlijst>(this.attach_BoekBoekenlijsts), new Action<BoekBoekenlijst>(this.detach_BoekBoekenlijsts));
 			this._Categorie = default(EntityRef<Categorie>);
 			this._Uitgever = default(EntityRef<Uitgever>);
 			OnCreated();
@@ -328,6 +334,19 @@ namespace ASPNetBoekenApplicatie
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Boek_BoekBoekenlijst", Storage="_BoekBoekenlijsts", ThisKey="id", OtherKey="id_boek")]
+		public EntitySet<BoekBoekenlijst> BoekBoekenlijsts
+		{
+			get
+			{
+				return this._BoekBoekenlijsts;
+			}
+			set
+			{
+				this._BoekBoekenlijsts.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Boek", Storage="_Categorie", ThisKey="categorieID", OtherKey="categorieID", IsForeignKey=true)]
 		public Categorie Categorie
 		{
@@ -415,11 +434,25 @@ namespace ASPNetBoekenApplicatie
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_BoekBoekenlijsts(BoekBoekenlijst entity)
+		{
+			this.SendPropertyChanging();
+			entity.Boek = this;
+		}
+		
+		private void detach_BoekBoekenlijsts(BoekBoekenlijst entity)
+		{
+			this.SendPropertyChanging();
+			entity.Boek = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BoekBoekenlijst")]
-	public partial class BoekBoekenlijst
+	public partial class BoekBoekenlijst : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _klas;
 		
@@ -433,11 +466,39 @@ namespace ASPNetBoekenApplicatie
 		
 		private string _categorieID;
 		
+		private EntityRef<Boek> _Boek;
+		
+		private EntityRef<Boekenlijst> _Boekenlijst;
+		
+		private EntityRef<Categorie> _Categorie;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnklasChanging(string value);
+    partial void OnklasChanged();
+    partial void Onid_boekChanging(int value);
+    partial void Onid_boekChanged();
+    partial void OnhuurprijsChanging(System.Nullable<decimal> value);
+    partial void OnhuurprijsChanged();
+    partial void OnschoolprijsChanging(System.Nullable<decimal> value);
+    partial void OnschoolprijsChanged();
+    partial void OnwordtverhuurdChanging(System.Nullable<byte> value);
+    partial void OnwordtverhuurdChanged();
+    partial void OncategorieIDChanging(string value);
+    partial void OncategorieIDChanged();
+    #endregion
+		
 		public BoekBoekenlijst()
 		{
+			this._Boek = default(EntityRef<Boek>);
+			this._Boekenlijst = default(EntityRef<Boekenlijst>);
+			this._Categorie = default(EntityRef<Categorie>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_klas", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_klas", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string klas
 		{
 			get
@@ -448,12 +509,20 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._klas != value))
 				{
+					if (this._Boekenlijst.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnklasChanging(value);
+					this.SendPropertyChanging();
 					this._klas = value;
+					this.SendPropertyChanged("klas");
+					this.OnklasChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_boek", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_boek", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int id_boek
 		{
 			get
@@ -464,7 +533,15 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._id_boek != value))
 				{
+					if (this._Boek.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_boekChanging(value);
+					this.SendPropertyChanging();
 					this._id_boek = value;
+					this.SendPropertyChanged("id_boek");
+					this.Onid_boekChanged();
 				}
 			}
 		}
@@ -480,7 +557,11 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._huurprijs != value))
 				{
+					this.OnhuurprijsChanging(value);
+					this.SendPropertyChanging();
 					this._huurprijs = value;
+					this.SendPropertyChanged("huurprijs");
+					this.OnhuurprijsChanged();
 				}
 			}
 		}
@@ -496,7 +577,11 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._schoolprijs != value))
 				{
+					this.OnschoolprijsChanging(value);
+					this.SendPropertyChanging();
 					this._schoolprijs = value;
+					this.SendPropertyChanged("schoolprijs");
+					this.OnschoolprijsChanged();
 				}
 			}
 		}
@@ -512,7 +597,11 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._wordtverhuurd != value))
 				{
+					this.OnwordtverhuurdChanging(value);
+					this.SendPropertyChanging();
 					this._wordtverhuurd = value;
+					this.SendPropertyChanged("wordtverhuurd");
+					this.OnwordtverhuurdChanged();
 				}
 			}
 		}
@@ -528,8 +617,138 @@ namespace ASPNetBoekenApplicatie
 			{
 				if ((this._categorieID != value))
 				{
+					if (this._Categorie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncategorieIDChanging(value);
+					this.SendPropertyChanging();
 					this._categorieID = value;
+					this.SendPropertyChanged("categorieID");
+					this.OncategorieIDChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Boek_BoekBoekenlijst", Storage="_Boek", ThisKey="id_boek", OtherKey="id", IsForeignKey=true)]
+		public Boek Boek
+		{
+			get
+			{
+				return this._Boek.Entity;
+			}
+			set
+			{
+				Boek previousValue = this._Boek.Entity;
+				if (((previousValue != value) 
+							|| (this._Boek.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Boek.Entity = null;
+						previousValue.BoekBoekenlijsts.Remove(this);
+					}
+					this._Boek.Entity = value;
+					if ((value != null))
+					{
+						value.BoekBoekenlijsts.Add(this);
+						this._id_boek = value.id;
+					}
+					else
+					{
+						this._id_boek = default(int);
+					}
+					this.SendPropertyChanged("Boek");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Boekenlijst_BoekBoekenlijst", Storage="_Boekenlijst", ThisKey="klas", OtherKey="klas", IsForeignKey=true)]
+		public Boekenlijst Boekenlijst
+		{
+			get
+			{
+				return this._Boekenlijst.Entity;
+			}
+			set
+			{
+				Boekenlijst previousValue = this._Boekenlijst.Entity;
+				if (((previousValue != value) 
+							|| (this._Boekenlijst.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Boekenlijst.Entity = null;
+						previousValue.BoekBoekenlijsts.Remove(this);
+					}
+					this._Boekenlijst.Entity = value;
+					if ((value != null))
+					{
+						value.BoekBoekenlijsts.Add(this);
+						this._klas = value.klas;
+					}
+					else
+					{
+						this._klas = default(string);
+					}
+					this.SendPropertyChanged("Boekenlijst");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_BoekBoekenlijst", Storage="_Categorie", ThisKey="categorieID", OtherKey="categorieID", IsForeignKey=true)]
+		public Categorie Categorie
+		{
+			get
+			{
+				return this._Categorie.Entity;
+			}
+			set
+			{
+				Categorie previousValue = this._Categorie.Entity;
+				if (((previousValue != value) 
+							|| (this._Categorie.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Categorie.Entity = null;
+						previousValue.BoekBoekenlijsts.Remove(this);
+					}
+					this._Categorie.Entity = value;
+					if ((value != null))
+					{
+						value.BoekBoekenlijsts.Add(this);
+						this._categorieID = value.categorieID;
+					}
+					else
+					{
+						this._categorieID = default(string);
+					}
+					this.SendPropertyChanged("Categorie");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -549,6 +768,8 @@ namespace ASPNetBoekenApplicatie
 		private System.DateTime _laatstewijziging;
 		
 		private System.Nullable<int> _aantalLeerlingen;
+		
+		private EntitySet<BoekBoekenlijst> _BoekBoekenlijsts;
 		
 		private EntityRef<Status> _Status;
 		
@@ -570,6 +791,7 @@ namespace ASPNetBoekenApplicatie
 		
 		public Boekenlijst()
 		{
+			this._BoekBoekenlijsts = new EntitySet<BoekBoekenlijst>(new Action<BoekBoekenlijst>(this.attach_BoekBoekenlijsts), new Action<BoekBoekenlijst>(this.detach_BoekBoekenlijsts));
 			this._Status = default(EntityRef<Status>);
 			OnCreated();
 		}
@@ -678,6 +900,19 @@ namespace ASPNetBoekenApplicatie
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Boekenlijst_BoekBoekenlijst", Storage="_BoekBoekenlijsts", ThisKey="klas", OtherKey="klas")]
+		public EntitySet<BoekBoekenlijst> BoekBoekenlijsts
+		{
+			get
+			{
+				return this._BoekBoekenlijsts;
+			}
+			set
+			{
+				this._BoekBoekenlijsts.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Boekenlijst", Storage="_Status", ThisKey="statusID", OtherKey="statusID", IsForeignKey=true)]
 		public Status Status
 		{
@@ -731,6 +966,18 @@ namespace ASPNetBoekenApplicatie
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_BoekBoekenlijsts(BoekBoekenlijst entity)
+		{
+			this.SendPropertyChanging();
+			entity.Boekenlijst = this;
+		}
+		
+		private void detach_BoekBoekenlijsts(BoekBoekenlijst entity)
+		{
+			this.SendPropertyChanging();
+			entity.Boekenlijst = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorie")]
@@ -745,6 +992,8 @@ namespace ASPNetBoekenApplicatie
 		
 		private EntitySet<Boek> _Boeks;
 		
+		private EntitySet<BoekBoekenlijst> _BoekBoekenlijsts;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -758,6 +1007,7 @@ namespace ASPNetBoekenApplicatie
 		public Categorie()
 		{
 			this._Boeks = new EntitySet<Boek>(new Action<Boek>(this.attach_Boeks), new Action<Boek>(this.detach_Boeks));
+			this._BoekBoekenlijsts = new EntitySet<BoekBoekenlijst>(new Action<BoekBoekenlijst>(this.attach_BoekBoekenlijsts), new Action<BoekBoekenlijst>(this.detach_BoekBoekenlijsts));
 			OnCreated();
 		}
 		
@@ -814,6 +1064,19 @@ namespace ASPNetBoekenApplicatie
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_BoekBoekenlijst", Storage="_BoekBoekenlijsts", ThisKey="categorieID", OtherKey="categorieID")]
+		public EntitySet<BoekBoekenlijst> BoekBoekenlijsts
+		{
+			get
+			{
+				return this._BoekBoekenlijsts;
+			}
+			set
+			{
+				this._BoekBoekenlijsts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -841,6 +1104,18 @@ namespace ASPNetBoekenApplicatie
 		}
 		
 		private void detach_Boeks(Boek entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = null;
+		}
+		
+		private void attach_BoekBoekenlijsts(BoekBoekenlijst entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = this;
+		}
+		
+		private void detach_BoekBoekenlijsts(BoekBoekenlijst entity)
 		{
 			this.SendPropertyChanging();
 			entity.Categorie = null;
