@@ -4,11 +4,11 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <p>
+    <p style="width: 938px">
         Titel:
         <asp:TextBox ID="txtTitel" runat="server">
         </asp:TextBox>
-        <br />
+        &nbsp;
         Categorie:
         <asp:DropDownList ID="categorie_dropdown" runat="server"
             DataSourceID="categorieen_Ids" DataTextField="naam" 
@@ -19,16 +19,17 @@
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" Select="new (categorieID, naam)" TableName="Categories"> 
         </asp:LinqDataSource>
+        <asp:LinqDataSource ID="uitgever_id" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" Select="new (uitgeverID, naam)" TableName="Uitgevers">
+        </asp:LinqDataSource>
         <br />
         Uitgever:
         <asp:DropDownList ID="uitgever_dropdown" runat="server" AutoPostBack="True" 
             DataSourceID="uitgever_id" DataTextField="naam" DataValueField="uitgeverID"
             OnDataBound="uitgever_dropdown_databound">
         </asp:DropDownList>
-        <asp:LinqDataSource ID="uitgever_id" runat="server" 
-            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
-            EntityTypeName="" Select="new (uitgeverID, naam)" TableName="Uitgevers">
-        </asp:LinqDataSource>
+        &nbsp;&nbsp;&nbsp;
         ISBN nummer:
         <asp:TextBox ID="txtISBN" runat="server"></asp:TextBox>
         <br />
@@ -36,7 +37,7 @@
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
             DataSourceID="boeken_links_ids" CellPadding="4" ForeColor="#333333" 
-            GridLines="None" PageSize="5" Width="200px">
+            GridLines="None" PageSize="5" Width="806px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
@@ -81,6 +82,27 @@
             <asp:ControlParameter ControlID="uitgever_dropdown" Name="uitgeverParameter" PropertyName="SelectedValue" Type="String" DefaultValue="alle" />
             </WhereParameters>
         </asp:LinqDataSource>
+        <br />
+        Klas Naam:
+        <asp:TextBox ID="txtKlasNaam" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp; Aantal leerlingen:
+        <asp:TextBox ID="txtAantalLeerlingen" runat="server" Width="37px"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;
+        <asp:CheckBox ID="cbBasedOn" runat="server" Text=" " />
+        Gebaseerd op klaslijst:
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="klassen" 
+            DataTextField="klas" DataValueField="klas">
+        </asp:DropDownList>
+        <asp:LinqDataSource ID="klassen" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
+        </asp:LinqDataSource>
+&nbsp;
+        <asp:Button ID="btnCreateKlas" runat="server" onclick="btnCreateKlas_Click" 
+            Text="Maak klas aan" />
+        <br />
+        <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+        <asp:Label ID="lblCorrect" runat="server" ForeColor="#33CC33"></asp:Label>
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </p>

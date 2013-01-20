@@ -39,5 +39,57 @@ namespace ASPNetBoekenApplicatie
                 e.WhereParameters.Remove("uitgeverParameter");
             }
         }
+
+        protected void btnCreateKlas_Click(object sender, EventArgs e)
+        {
+            String klasNaam = txtKlasNaam.Text.Trim();
+            String aantalLeerlingen = txtAantalLeerlingen.Text.Trim();
+
+            if (ControleVanVelden(klasNaam, aantalLeerlingen))
+            {
+                createKlas(klasNaam, aantalLeerlingen);
+            }
+            else {
+                lblError.Text = "Er is een fout opget bij de controle van de gegevens mogelijk door: <br />";
+                lblError.Text += "<ul>";
+                lblError.Text += "<li>Naam of aantal leerlingen is niet ingevuld</li>";
+                lblError.Text += "<li>Naam is langer dan 3 tekens</li>";
+                lblError.Text += "<li>Aantal leerlingen is negatief of geen heel getal</li>";
+                lblError.Text += "</ul>";
+            }
+        }
+
+        private Boolean ControleVanVelden(String klasNaam, String aantalLeerlingen) {
+            Boolean result = false;
+            if (klasNaam != null && aantalLeerlingen != null && !klasNaam.Equals("") && !aantalLeerlingen.Equals("") && klasNaam.Length < 3) {
+                int number;
+                Boolean isNumber = int.TryParse(aantalLeerlingen, out number);
+                if (isNumber && number > 0) {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        private void createKlas(String klasnaam, String aantalLeerlingen) {
+            int aantal = int.Parse(aantalLeerlingen);
+            Boekenlijst boekenlijst = new Boekenlijst { 
+                aantalLeerlingen = aantal,
+                klas = klasnaam,
+                statusID = 1,
+                laatstewijziging = DateTime.Now
+            };
+            dc.Boekenlijsts.InsertOnSubmit(boekenlijst);
+            try
+            {
+                dc.SubmitChanges();
+                lblError.Text = "";
+                lblCorrect.Text = "Klas succesvol toegevoegd!";
+            }
+            catch (LinqDataSourceValidationException e) {
+                lblError.Text = "Er was een probleem bij toevoegen van de klas!";
+            }
+        }
+
     }
 }

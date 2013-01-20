@@ -38,7 +38,9 @@
             </div>
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+              
+            </asp:ContentPlaceHolder>
         </div>
         <div class="clear">
         </div>
