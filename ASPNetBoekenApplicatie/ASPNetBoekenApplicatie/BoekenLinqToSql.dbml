@@ -49,7 +49,7 @@
   </Table>
   <Table Name="dbo.Schoolartikel" Member="Schoolartikels">
     <Type Name="Schoolartikel">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="naam" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
       <Column Name="prijs" Type="System.Decimal" DbType="Decimal(8,3) NOT NULL" CanBeNull="false" />
       <Association Name="Schoolartikel_SchoolartikelBoekenlijst" Member="SchoolartikelBoekenlijsts" ThisKey="id" OtherKey="id_schoolartikel" Type="SchoolartikelBoekenlijst" />
@@ -57,8 +57,8 @@
   </Table>
   <Table Name="dbo.SchoolartikelBoekenlijst" Member="SchoolartikelBoekenlijsts">
     <Type Name="SchoolartikelBoekenlijst">
-      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="id_schoolartikel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="klas" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_schoolartikel" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="prijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
       <Association Name="Boekenlijst_SchoolartikelBoekenlijst" Member="Boekenlijst" ThisKey="klas" OtherKey="klas" Type="Boekenlijst" IsForeignKey="true" />
       <Association Name="Schoolartikel_SchoolartikelBoekenlijst" Member="Schoolartikel" ThisKey="id_schoolartikel" OtherKey="id" Type="Schoolartikel" IsForeignKey="true" />

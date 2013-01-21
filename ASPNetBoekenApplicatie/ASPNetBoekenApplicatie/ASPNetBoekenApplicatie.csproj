@@ -60,6 +60,7 @@
     <Content Include="App_Data\Boeken_log.ldf">
       <DependentUpon>Boeken.mdf</DependentUpon>
     </Content>
+    <Content Include="Artikel.aspx" />
     <Content Include="Boeken.mdf" />
     <Content Include="Boeken_log.ldf">
       <DependentUpon>Boeken.mdf</DependentUpon>
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artikel.aspx.cs">
+      <DependentUpon>Artikel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artikel.aspx.designer.cs">
+      <DependentUpon>Artikel.aspx</DependentUpon>
     </Compile>
     <Compile Include="BoekenLinqToSql.designer.cs">
       <AutoGen>True</AutoGen>
