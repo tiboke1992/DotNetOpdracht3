@@ -100,8 +100,6 @@ namespace ASPNetBoekenApplicatie
                 dc.SubmitChanges();
                 lblError.Text = "";
                 lblCorrect.Text = "Klas succesvol toegevoegd!";
-                ddlSelecteerKlas.DataBind();
-                ddlGebaseerd.DataBind();
             }
             catch (LinqDataSourceValidationException e)
             {
@@ -148,14 +146,14 @@ namespace ASPNetBoekenApplicatie
                     dc.SubmitChanges();
                     lblError.Text = "";
                     lblCorrect.Text = "Klas succesvol toegevoegd!";
-                    ddlSelecteerKlas.DataBind();
-                    ddlGebaseerd.DataBind();
                 }
                 catch (LinqDataSourceValidationException e)
                 {
                     lblError.Text = "Er was een probleem bij toevoegen van de klas!";
                 }
             }
+            ddlSelecteerKlas.DataBind();
+            ddlGebaseerd.DataBind();
         }
 
         protected void btnAddBoek_Click(object sender, EventArgs e)
