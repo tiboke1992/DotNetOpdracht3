@@ -107,7 +107,8 @@
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="titel" HeaderText="Titel" ReadOnly="True" SortExpression="titel" />
-                <asp:BoundField DataField="id_boek" HeaderText="id_boek" ReadOnly="True" SortExpression="id_boek" />
+                <asp:BoundField DataField="id_boek" HeaderText="id_boek" ReadOnly="True" 
+                    SortExpression="id_boek" Visible="False" />
                 <asp:BoundField DataField="categorieID" HeaderText="Categorie" SortExpression="categorieID" />
                 <asp:BoundField DataField="wordtverhuurd" HeaderText="Verhuurd" SortExpression="wordtverhuurd" />
                 <asp:BoundField DataField="huurprijs" HeaderText="HuurPrijs" SortExpression="HuurPrijs" />
@@ -136,17 +137,10 @@
         <asp:Button ID="btnAddBoek" runat="server" OnClick="btnAddBoek_Click" Text="&gt;&gt;" />
         <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="&lt;&lt;" />
     </p>
-    <p style="width: 938px">
-        
-        
-    </p>
-    <p style="width: 938px">
-        
-    </p>
    <table class="ondersteTable">
    <tr>
    <td class="tableLings">
-   <asp:GridView ID="GridView3" runat="server" AllowPaging="True" AllowSorting="True"
+   <asp:GridView ID="GridView3" runat="server" AllowPaging="True" AllowSorting="True" DataKeyNames="id"
             AutoGenerateColumns="False" CellPadding="4" DataSourceID="SchoolArtikelensLinq"
             ForeColor="#333333" GridLines="None" PageSize="5" Width="362px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -173,9 +167,11 @@
         </asp:LinqDataSource>
    </td>
    <td>
-   <asp:Button ID="btnAddArtikel" runat="server" Text="&gt;&gt;" />
+   <asp:Button ID="btnAddArtikel" runat="server" Text="&gt;&gt;" 
+           onclick="btnAddArtikel_Click" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnRemoveArtikel" runat="server" Text="&lt;&lt;" />
+        <asp:Button ID="btnRemoveArtikel" runat="server" Text="&lt;&lt;" 
+           onclick="btnRemoveArtikel_Click" />
    </td>
    <td class="td.tableRechts">
    <asp:GridView ID="GridView4" runat="server" AllowPaging="True" DataKeyNames="id_schoolartikel"

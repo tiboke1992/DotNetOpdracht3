@@ -213,5 +213,48 @@ namespace ASPNetBoekenApplicatie
             }
         }
 
+        protected void btnAddArtikel_Click(object sender, EventArgs e)
+        {
+            if (GridView3.SelectedValue != null && ddlSelecteerKlas.SelectedValue != null) { 
+                //checken of die boekenlijst da item al heeft
+                int id = int.Parse(GridView3.SelectedValue.ToString());
+                IEnumerable<SchoolartikelBoekenlijst> lijst = dc.SchoolartikelBoekenlijsts.Where(x => x.klas == ddlSelecteerKlas.SelectedValue && x.id_schoolartikel == id);
+                if (lijst.Count() == 0) {
+                    SchoolartikelBoekenlijst l = new SchoolartikelBoekenlijst();
+                    l.klas = ddlSelecteerKlas.SelectedValue;
+                    l.id_schoolartikel = id;
+                    Schoolartikel a = dc.Schoolartikels.Where(x => x.id == id).First();
+                    l.prijs = a.prijs;
+                    try
+                    {
+                        dc.SchoolartikelBoekenlijsts.InsertOnSubmit(l);
+                        dc.SubmitChanges();
+                        GridView4.DataBind();
+                    }
+                    catch (LinqDataSourceValidationException aze) {
+                        lblError.Text = "Fout opgetreden bij toevoegen artikel aan lijst ";
+                    }
+                }
+            }
+        }
+
+        protected void btnRemoveArtikel_Click(object sender, EventArgs e)
+        {
+            if (ddlSelecteerKlas != null && GridView4.SelectedValue != null) { 
+                int id = int.Parse(GridView4.SelectedValue.ToString());
+                SchoolartikelBoekenlijst s = dc.SchoolartikelBoekenlijsts.Where(x => x.klas == ddlSelecteerKlas.SelectedValue && x.id_schoolartikel == id).First();
+                try
+                {
+                    dc.SchoolartikelBoekenlijsts.DeleteOnSubmit(s);
+                    dc.SubmitChanges();
+                    GridView4.DataBind();
+                }
+                catch (LinqDataSourceValidationException azerty)
+                {
+                    lblError.Text = "Fout opgetreden bij verwijderen artikel uit lijst ";
+                }
+            }
+        }
+
     }
 }
