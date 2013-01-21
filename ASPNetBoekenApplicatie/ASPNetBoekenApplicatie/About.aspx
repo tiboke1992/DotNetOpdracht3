@@ -4,10 +4,18 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        About
-    </h2>
     <p>
-        Put content here.
+        Q1 :
+        <asp:GridView ID="dvg1" runat="server" AllowPaging="True" 
+            EnableSortingAndPagingCallbacks="True" PageSize="5">
+        </asp:GridView>
+    </p>
+    <p>
+        q2<asp:GridView ID="dvg2" runat="server" AllowPaging="True" PageSize="5">
+        </asp:GridView>
+    </p>
+    <p>
+        q3:<asp:GridView ID="dvg3" runat="server" AllowPaging="True" PageSize="5">
+        </asp:GridView>
     </p>
 </asp:Content>

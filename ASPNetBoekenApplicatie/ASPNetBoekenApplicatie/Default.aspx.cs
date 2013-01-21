@@ -86,6 +86,8 @@ namespace ASPNetBoekenApplicatie
                 dc.SubmitChanges();
                 lblError.Text = "";
                 lblCorrect.Text = "Klas succesvol toegevoegd!";
+                ddlSelecteerKlas.DataBind();
+                ddlGebaseerd.DataBind();
             }
             catch (LinqDataSourceValidationException e) {
                 lblError.Text = "Er was een probleem bij toevoegen van de klas!";
@@ -122,6 +124,61 @@ namespace ASPNetBoekenApplicatie
                 catch (LinqDataSourceValidationException e)
                 {
                     showKlasErrorMessage();
+                }
+            }
+        }
+
+        protected void btnAddBoek_Click(object sender, EventArgs e)
+        {
+            if (GridView1.SelectedValue != null) {
+                int id = int.Parse(GridView1.SelectedValue.ToString());
+                IEnumerable<Boek> boek = dc.Boeks.Where(x => x.id == id);
+                IEnumerable<BoekBoekenlijst> ll = dc.BoekBoekenlijsts.Where(x => x.id_boek == id && x.klas == ddlSelecteerKlas.SelectedValue);
+                if (ll.Count() == 0)
+                {
+                    Boek b = null;
+                    foreach (Boek l in boek)
+                    {
+                        b = l;
+                    }
+                    BoekBoekenlijst vv = new BoekBoekenlijst
+                    {
+                        klas = ddlSelecteerKlas.SelectedValue,
+                        id_boek = b.id,
+                        huurprijs = 0,
+                        schoolprijs = b.aankoopprijs,
+                        wordtverhuurd = 0,
+                        categorieID = b.categorieID
+                    };
+                    dc.BoekBoekenlijsts.InsertOnSubmit(vv);
+                    try
+                    {
+                        dc.SubmitChanges();
+                        GridView2.DataBind();
+                    }
+                    catch (LinqDataSourceValidationException l)
+                    {
+                        lblError.Text = "Fout bij toevoegen boek";
+                    }
+                }
+            }     
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (GridView2.SelectedValue != null) {
+                int id = int.Parse(GridView2.SelectedValue.ToString());
+                IEnumerable<BoekBoekenlijst> bblijst = dc.BoekBoekenlijsts.Where(x => x.klas == ddlSelecteerKlas.SelectedValue && x.id_boek == id);
+                BoekBoekenlijst b = bblijst.First();
+                dc.BoekBoekenlijsts.DeleteOnSubmit(b);
+                try
+                {
+                    dc.SubmitChanges();
+                    GridView2.DataBind();
+                }
+                catch (LinqDataSourceValidationException lol)
+                {
+                    lblError.Text = "Fout bij verwijderen boek";
                 }
             }
         }

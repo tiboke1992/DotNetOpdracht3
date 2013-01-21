@@ -36,7 +36,7 @@
         <br />
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
-            DataSourceID="boeken_links_ids" CellPadding="4" ForeColor="#333333" 
+            DataSourceID="boeken_links_ids" CellPadding="4" ForeColor="#333333" DataKeyNames="id"
             GridLines="None" PageSize="5" Width="806px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
@@ -112,7 +112,7 @@
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
         </asp:LinqDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="id_boek" 
             DataSourceID="gdvKlasBoekenLijst" Width="804px" AllowPaging="True" 
             AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -153,6 +153,10 @@
                     PropertyName="SelectedValue" Type="String" />
             </WhereParameters>
         </asp:LinqDataSource>
+        <asp:Button ID="btnAddBoek" runat="server" onclick="btnAddBoek_Click" 
+            Text="&gt;&gt;" />
+        <asp:Button ID="btnRemove" runat="server" onclick="btnRemove_Click" 
+            Text="&lt;&lt;" />
         <br />
     </p>
 </asp:Content>
