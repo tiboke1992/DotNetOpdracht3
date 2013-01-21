@@ -104,6 +104,14 @@
         <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
         <asp:Label ID="lblCorrect" runat="server" ForeColor="#33CC33"></asp:Label>
         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Klas:
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
+            DataSourceID="klasddl" DataTextField="klas" DataValueField="klas">
+        </asp:DropDownList>
+        <asp:LinqDataSource ID="klasddl" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
+        </asp:LinqDataSource>
+        <br />
     </p>
 </asp:Content>
