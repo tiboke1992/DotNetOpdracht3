@@ -8,3 +8,7 @@ C:\Users\tibo\Documents\GitHub\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoek
 C:\Users\tibo\Documents\GitHub\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\tibo\Documents\GitHub\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\obj\Debug\ASPNetBoekenApplicatie.dll
 C:\Users\tibo\Documents\GitHub\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\obj\Debug\ASPNetBoekenApplicatie.pdb
+C:\Users\tibo\Documents\School\DotNet\Tibo\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\bin\ASPNetBoekenApplicatie.dll
+C:\Users\tibo\Documents\School\DotNet\Tibo\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\bin\ASPNetBoekenApplicatie.pdb
+C:\Users\tibo\Documents\School\DotNet\Tibo\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\obj\Debug\ASPNetBoekenApplicatie.dll
+C:\Users\tibo\Documents\School\DotNet\Tibo\DotNetOpdracht3\ASPNetBoekenApplicatie\ASPNetBoekenApplicatie\obj\Debug\ASPNetBoekenApplicatie.pdb
