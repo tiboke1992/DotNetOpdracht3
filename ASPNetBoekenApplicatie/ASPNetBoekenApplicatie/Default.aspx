@@ -105,12 +105,53 @@
         <asp:Label ID="lblCorrect" runat="server" ForeColor="#33CC33"></asp:Label>
         <br />
         Klas:
-        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
+        <asp:DropDownList ID="ddlSelecteerKlas" runat="server" AutoPostBack="True" 
             DataSourceID="klasddl" DataTextField="klas" DataValueField="klas">
         </asp:DropDownList>
         <asp:LinqDataSource ID="klasddl" runat="server" 
             ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
             EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
+        </asp:LinqDataSource>
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+            DataSourceID="gdvKlasBoekenLijst" Width="804px" AllowPaging="True" 
+            AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="titel" HeaderText="Titel" ReadOnly="True" 
+                    SortExpression="titel" />
+                <asp:BoundField DataField="id_boek" HeaderText="id_boek" ReadOnly="True" 
+                    SortExpression="id_boek" />
+                <asp:BoundField DataField="categorieID" HeaderText="Categorie" 
+                    SortExpression="categorieID" />
+                <asp:BoundField DataField="wordtverhuurd" HeaderText="Verhuurd" 
+                    SortExpression="wordtverhuurd" />
+                <asp:BoundField DataField="huurprijs" HeaderText="HuurPrijs" 
+                    SortExpression="HuurPrijs" />
+                <asp:BoundField DataField="schoolprijs" HeaderText="SchoolPrijs" 
+                    SortExpression="schoolprijs" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        </asp:GridView>
+        <asp:LinqDataSource ID="gdvKlasBoekenLijst" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" 
+            Select="new (klas, id_boek, huurprijs, schoolprijs, wordtverhuurd, categorieID, Boek, Boek.titel)" 
+            TableName="BoekBoekenlijsts" Where="klas == @klas" EnableDelete="True" 
+            EnableInsert="True" EnableUpdate="True">
+            <WhereParameters>
+                <asp:ControlParameter ControlID="ddlSelecteerKlas" Name="klas" 
+                    PropertyName="SelectedValue" Type="String" />
+            </WhereParameters>
         </asp:LinqDataSource>
         <br />
     </p>

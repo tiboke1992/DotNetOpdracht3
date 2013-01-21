@@ -157,13 +157,13 @@ namespace ASPNetBoekenApplicatie {
         protected global::System.Web.UI.WebControls.Label lblCorrect;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlSelecteerKlas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelecteerKlas;
         
         /// <summary>
         /// klasddl control.
@@ -173,5 +173,23 @@ namespace ASPNetBoekenApplicatie {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource klasddl;
+        
+        /// <summary>
+        /// GridView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
+        
+        /// <summary>
+        /// gdvKlasBoekenLijst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource gdvKlasBoekenLijst;
     }
 }
