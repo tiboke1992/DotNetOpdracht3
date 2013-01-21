@@ -292,3 +292,16 @@ div.accountInfo
     text-align: right;
     padding-right: 10px;
 }
+
+table.ondersteTable
+{
+    width: 100%;
+}
+
+td.tableLings, td.tableRechts
+{
+    width: 40%;
+    height: 200px;
+}
+
+
