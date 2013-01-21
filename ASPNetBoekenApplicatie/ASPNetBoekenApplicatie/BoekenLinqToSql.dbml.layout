@@ -8,7 +8,7 @@
         <elementListCompartment Id="30f1ed63-47cb-465c-9716-e703dee35d4f" absoluteBounds="0.64000000059604645, 1.5850000008940697, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" absoluteBounds="3.125, 1.125, 2, 1.9631982427090406">
+    <classShape Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" absoluteBounds="3.125, 1.125, 2, 1.9631982421875">
       <DataClassMoniker Name="/BoekenLinqToSqlDataContext/BoekBoekenlijst" />
       <nestedChildShapes>
         <elementListCompartment Id="40ce488c-597b-40cc-8d70-27476f4165ba" absoluteBounds="3.1400000005960464, 1.5850000008940697, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -56,14 +56,14 @@
         <elementListCompartment Id="8232defd-9c65-432a-bfbc-87e238d72f78" absoluteBounds="0.76500000059604645, 5.21000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 2.10659912135452); (3.125 : 2.10659912135452)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.625 : 2.10659912109375); (3.125 : 2.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boek/Boek_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
         <classShapeMoniker Id="fd7141f2-4331-4f6e-b9ad-3566879b896d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Boekenlijst/Boekenlijst_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="eea2d848-e46d-4be4-836f-77282811786e" />
@@ -77,7 +77,7 @@
         <classShapeMoniker Id="b783ea12-db48-4f68-91b5-4d188672d6ca" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.5 : 3.375); (3.5 : 3.08819824270904)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.5 : 3.375); (3.5 : 3.0881982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BoekenLinqToSqlDataContext/Categorie/Categorie_BoekBoekenlijst" />
       <nodes>
         <classShapeMoniker Id="91810916-6f6b-4af1-85c3-f37626bbbf85" />

@@ -100,19 +100,35 @@
         <asp:LinqDataSource ID="klasddl" runat="server" ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext"
             EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
         </asp:LinqDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="id_boek"
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="klas,id_boek"
             DataSourceID="gdvKlasBoekenLijst" Width="804px" AllowPaging="True" AllowSorting="True"
             CellPadding="4" ForeColor="#333333" GridLines="None" PageSize="4">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="titel" HeaderText="Titel" ReadOnly="True" SortExpression="titel" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
+                    ShowSelectButton="True" />
+                <asp:TemplateField HeaderText="Titel">
+                <ItemTemplate>
+                <%#Eval("Boek.titel") %>
+                </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="klas" HeaderText="klas" ReadOnly="True" 
+                    SortExpression="klas" Visible="False" />
                 <asp:BoundField DataField="id_boek" HeaderText="id_boek" ReadOnly="True" 
                     SortExpression="id_boek" Visible="False" />
-                <asp:BoundField DataField="categorieID" HeaderText="Categorie" SortExpression="categorieID" />
-                <asp:BoundField DataField="wordtverhuurd" HeaderText="Verhuurd" SortExpression="wordtverhuurd" />
-                <asp:BoundField DataField="huurprijs" HeaderText="HuurPrijs" SortExpression="HuurPrijs" />
-                <asp:BoundField DataField="schoolprijs" HeaderText="SchoolPrijs" SortExpression="schoolprijs" />
+                <asp:BoundField DataField="categorieID" HeaderText="categorieID" 
+                    SortExpression="categorieID" />
+                <asp:TemplateField HeaderText="wordtVerhuurd">
+                <ItemTemplate>
+                <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%#Convert.ToBoolean(Eval("wordtverhuurd"))%>' />
+                </asp:CheckBox>
+                </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="huurprijs" HeaderText="huurprijs" 
+                    SortExpression="huurprijs" />
+                <asp:BoundField DataField="schoolprijs" HeaderText="schoolprijs" 
+                    SortExpression="schoolprijs" />
+                <asp:BoundField DataField="wordtverhuurd" HeaderText="WordtVerhuurd" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -126,8 +142,8 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <asp:LinqDataSource ID="gdvKlasBoekenLijst" runat="server" ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext"
-            EntityTypeName="" Select="new (klas, id_boek, huurprijs, schoolprijs, wordtverhuurd, categorieID, Boek, Boek.titel)"
-            TableName="BoekBoekenlijsts" Where="klas == @klas" EnableDelete="True" EnableInsert="True"
+            EntityTypeName=""
+            TableName="BoekBoekenlijsts" Where="klas == @klas" EnableDelete="True" 
             EnableUpdate="True">
             <WhereParameters>
                 <asp:ControlParameter ControlID="ddlSelecteerKlas" Name="klas" PropertyName="SelectedValue"
@@ -145,11 +161,11 @@
             ForeColor="#333333" GridLines="None" PageSize="5" Width="362px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="naam" HeaderText="naam" ReadOnly="True" SortExpression="naam" />
-                <asp:BoundField DataField="prijs" HeaderText="prijs" ReadOnly="True" SortExpression="prijs" />
-                <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id"
-                    Visible="False" />
+                <asp:CommandField ShowEditButton="True" ShowSelectButton="True" />
+                <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" 
+                    SortExpression="id" InsertVisible="False" Visible="False" />
+                <asp:BoundField DataField="naam" HeaderText="naam" SortExpression="naam" />
+                <asp:BoundField DataField="prijs" HeaderText="prijs" SortExpression="prijs" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -163,7 +179,8 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <asp:LinqDataSource ID="SchoolArtikelensLinq" runat="server" ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext"
-            EntityTypeName="" Select="new (naam, prijs, id)" TableName="Schoolartikels">
+            EntityTypeName="" TableName="Schoolartikels" EnableDelete="True" 
+           EnableInsert="True" EnableUpdate="True">
         </asp:LinqDataSource>
    </td>
    <td>
@@ -174,22 +191,24 @@
            onclick="btnRemoveArtikel_Click" />
    </td>
    <td class="td.tableRechts">
-   <asp:GridView ID="GridView4" runat="server" AllowPaging="True" DataKeyNames="id_schoolartikel"
+   <asp:GridView ID="GridView4" runat="server" AllowPaging="True" DataKeyNames="klas,id_schoolartikel"
             AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SchoolArtikelenBoekenLijstLinq"
             ForeColor="#333333" GridLines="None" PageSize="5" Width="415px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:TemplateField HeaderText="artikel" SortExpression="artikel">
-                    <ItemTemplate>
-                        <%# Eval("Schoolartikel.naam") %>
-                    </ItemTemplate>
+                <asp:CommandField ShowDeleteButton="True" />
+                <asp:TemplateField HeaderText="Artikel">
+                <ItemTemplate>
+                <%#Eval("Schoolartikel.naam") %>
+                </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="prijs" HeaderText="prijs" ReadOnly="True" SortExpression="prijs" />
-                <asp:BoundField DataField="klas" HeaderText="klas" ReadOnly="True" SortExpression="klas"
+                <asp:BoundField DataField="klas" HeaderText="klas" ReadOnly="True" 
+                    SortExpression="klas" Visible="False" />
+                <asp:BoundField DataField="id_schoolartikel" HeaderText="id_schoolartikel" 
+                    ReadOnly="True" SortExpression="id_schoolartikel"
                     Visible="False" />
-                <asp:BoundField DataField="id_schoolartikel" HeaderText="id_schoolartikel" ReadOnly="True"
-                    SortExpression="id_schoolartikel" Visible="False" />
+                <asp:BoundField DataField="prijs" HeaderText="prijs"
+                    SortExpression="prijs" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -203,8 +222,9 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <asp:LinqDataSource ID="SchoolArtikelenBoekenLijstLinq" runat="server" ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext"
-            EntityTypeName="" Select="new (klas, id_schoolartikel, prijs, Boekenlijst, Schoolartikel)"
-            TableName="SchoolartikelBoekenlijsts" Where="klas == @klas">
+            EntityTypeName=""
+            TableName="SchoolartikelBoekenlijsts" Where="klas == @klas" 
+           EnableDelete="True" EnableUpdate="True">
             <WhereParameters>
                 <asp:ControlParameter ControlID="ddlSelecteerKlas" Name="klas" PropertyName="SelectedValue"
                     Type="String" />
@@ -213,4 +233,8 @@
    </td>
    </tr>
    </table>
+    <asp:LinqDataSource ID="wassup" runat="server" 
+        ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+        EntityTypeName="" Select="new (categorieID, naam)" TableName="Categories">
+    </asp:LinqDataSource>
 </asp:Content>
