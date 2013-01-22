@@ -19,7 +19,7 @@
       <Column Name="id_boek" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="huurprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
       <Column Name="schoolprijs" Type="System.Decimal" DbType="Decimal(8,3)" CanBeNull="true" />
-      <Column Name="wordtverhuurd" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="wordtverhuurd" Type="System.Boolean" DbType="bit" CanBeNull="true" />
       <Column Name="categorieID" Type="System.String" DbType="Char(4)" CanBeNull="true" />
       <Association Name="Boek_BoekBoekenlijst" Member="Boek" ThisKey="id_boek" OtherKey="id" Type="Boek" IsForeignKey="true" />
       <Association Name="Boekenlijst_BoekBoekenlijst" Member="Boekenlijst" ThisKey="klas" OtherKey="klas" Type="Boekenlijst" IsForeignKey="true" />

@@ -125,7 +125,7 @@ namespace ASPNetBoekenApplicatie
             if (cbBasedOn.Checked == true)
             {
                 List<BoekBoekenlijst> onzelijst = new List<BoekBoekenlijst>();
-                IEnumerable<BoekBoekenlijst> hunLijst = dc.BoekBoekenlijsts.Where(x => x.klas == ddlGebaseerd.SelectedValue);
+                IEnumerable<BoekBoekenlijst> hunLijst = dc.BoekBoekenlijsts.Where(x => x.klas == ddlGebaseerd.SelectedValue && x.wordtverhuurd == false);
                 foreach (BoekBoekenlijst b in hunLijst)
                 {
                     BoekBoekenlijst l = new BoekBoekenlijst();
@@ -163,7 +163,8 @@ namespace ASPNetBoekenApplicatie
                 int id = int.Parse(GridView1.SelectedValue.ToString());
                 IEnumerable<Boek> boek = dc.Boeks.Where(x => x.id == id);
                 IEnumerable<BoekBoekenlijst> ll = dc.BoekBoekenlijsts.Where(x => x.id_boek == id && x.klas == ddlSelecteerKlas.SelectedValue);
-                if (ll.Count() == 0)
+                IEnumerable<BoekBoekenlijst> lll = dc.BoekBoekenlijsts.Where(x => x.id_boek == id && x.wordtverhuurd == true);
+                if (ll.Count() == 0 && lll.Count() == 0)
                 {
                     Boek b = null;
                     foreach (Boek l in boek)
@@ -176,7 +177,7 @@ namespace ASPNetBoekenApplicatie
                         id_boek = b.id,
                         huurprijs = 0,
                         schoolprijs = b.aankoopprijs,
-                        wordtverhuurd = 0,
+                        wordtverhuurd = false,
                         categorieID = b.categorieID
                     };
                     dc.BoekBoekenlijsts.InsertOnSubmit(vv);
@@ -189,6 +190,10 @@ namespace ASPNetBoekenApplicatie
                     {
                         lblError.Text = "Fout bij toevoegen boek";
                     }
+                }
+                else {
+                    lblError.Text = "Boek wordt al uitgeleend!";
+                    lblCorrect.Text = "";
                 }
             }
         }
@@ -254,6 +259,39 @@ namespace ASPNetBoekenApplicatie
                     lblError.Text = "Fout opgetreden bij verwijderen artikel uit lijst ";
                 }
             }
+        }
+
+        protected void RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+            if (e.Row.RowType == DataControlRowType.DataRow && GridView2.EditIndex == e.Row.RowIndex)
+            {
+                DropDownList ddlCities = (DropDownList)e.Row.FindControl("ddlCities");
+                var q1 = from boeks in dc.Boeks
+                         select new { boeks.categorieID };
+                var q2 = q1.Distinct();
+                ddlCities.DataSource = q2;
+                ddlCities.DataTextField = "categorieID";
+                ddlCities.DataValueField = "categorieID";
+                ddlCities.DataBind();
+                ddlCities.Items.FindByValue((e.Row.FindControl("lblCity") as Label).Text).Selected = true;
+               
+            }
+        }
+
+        protected void UpdateBoekBoekenLijst(object sender, GridViewUpdateEventArgs e) {
+            string categorie = (GridView2.Rows[e.RowIndex].FindControl("ddlCities") as DropDownList).SelectedItem.Value;
+            string customerId = GridView2.DataKeys[e.RowIndex].Value.ToString();
+            int id = int.Parse(customerId);
+            var q = dc.BoekBoekenlijsts.Single(w => w.klas == ddlSelecteerKlas.SelectedValue && w.id_boek == id);
+            q.categorieID = categorie;
+            var f = dc.Boeks.Single(w => w.id == id);
+            f.categorieID = categorie;            
+            dc.SubmitChanges();
+            GridView2.DataBind();
+            //wordtverhuurd shit
+            
+
         }
 
     }

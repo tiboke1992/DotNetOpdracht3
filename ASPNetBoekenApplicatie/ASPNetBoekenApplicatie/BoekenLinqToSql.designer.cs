@@ -465,7 +465,7 @@ namespace ASPNetBoekenApplicatie
 		
 		private System.Nullable<decimal> _schoolprijs;
 		
-		private System.Nullable<byte> _wordtverhuurd;
+		private System.Nullable<bool> _wordtverhuurd;
 		
 		private string _categorieID;
 		
@@ -487,7 +487,7 @@ namespace ASPNetBoekenApplicatie
     partial void OnhuurprijsChanged();
     partial void OnschoolprijsChanging(System.Nullable<decimal> value);
     partial void OnschoolprijsChanged();
-    partial void OnwordtverhuurdChanging(System.Nullable<byte> value);
+    partial void OnwordtverhuurdChanging(System.Nullable<bool> value);
     partial void OnwordtverhuurdChanged();
     partial void OncategorieIDChanging(string value);
     partial void OncategorieIDChanged();
@@ -589,8 +589,8 @@ namespace ASPNetBoekenApplicatie
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wordtverhuurd", DbType="TinyInt")]
-		public System.Nullable<byte> wordtverhuurd
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wordtverhuurd", DbType="bit")]
+		public System.Nullable<bool> wordtverhuurd
 		{
 			get
 			{

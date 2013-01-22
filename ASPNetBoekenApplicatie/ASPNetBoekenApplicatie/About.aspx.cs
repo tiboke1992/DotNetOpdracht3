@@ -23,7 +23,7 @@ namespace ASPNetBoekenApplicatie
             var q2 = from b in dc.Boekenlijsts
                      join bb in dc.BoekBoekenlijsts on b.klas equals bb.klas
                      group new { b, bb } by bb.klas into g
-                     select new { Klas = g.Key, Totale_Prijs = g.Sum(p => p.bb.wordtverhuurd == 1 ? p.bb.huurprijs * p.b.aantalLeerlingen : p.bb.schoolprijs * p.b.aantalLeerlingen) };
+                     select new { Klas = g.Key, Totale_Prijs = g.Sum(p => p.bb.wordtverhuurd == true ? p.bb.huurprijs * p.b.aantalLeerlingen : p.bb.schoolprijs * p.b.aantalLeerlingen) };
             this.dvg2.DataSource = q2;
             dvg2.DataBind();
 
