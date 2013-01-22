@@ -19,12 +19,7 @@ namespace ASPNetBoekenApplicatie
             else {
                 if (User.IsInRole("klastitularis") || User.IsInRole("boekenlijstverantwoordelijke"))
                 {
-                    if (User.IsInRole("klastitularis")) {
-                        lblCorrect.Text = "Klastitularis";
-                    }
-                    else if (User.IsInRole("boekenlijstverantwoordelijke")) {
-                        lblCorrect.Text = "BoekenLijstVerantwoordelijke";
-                    }
+              
                 }
                 else {
                     Response.Redirect("Account/Login.aspx");
