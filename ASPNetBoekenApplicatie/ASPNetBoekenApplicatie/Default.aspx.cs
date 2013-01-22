@@ -12,7 +12,16 @@ namespace ASPNetBoekenApplicatie
         BoekenLinqToSqlDataContext dc = new BoekenLinqToSqlDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+          
+        }
 
+        protected void Page_PreRenderComplete(Object sender, EventArgs e) {
+            if (ddlSelecteerKlas.SelectedValue != null) {
+                var q = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
+                ddlStatus.SelectedIndex = ddlStatus.Items.IndexOf(ddlStatus.Items.FindByValue("" + q.statusID));
+                var k = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
+                txtcommentaar.Text = (""+k.opmerking);
+            }
         }
 
         protected void categorie_dropdown_databound(Object sender, EventArgs e)
@@ -185,6 +194,7 @@ namespace ASPNetBoekenApplicatie
                     {
                         dc.SubmitChanges();
                         GridView2.DataBind();
+                        lblError.Text = "";
                     }
                     catch (LinqDataSourceValidationException l)
                     {
@@ -290,8 +300,44 @@ namespace ASPNetBoekenApplicatie
             dc.SubmitChanges();
             GridView2.DataBind();
             //wordtverhuurd shit
-            
+        }
 
+        protected void selecteerKlasIndexChanged(object sender, EventArgs e) {
+            if (ddlSelecteerKlas.SelectedValue != null) { 
+                //status en opmerking update
+                var q = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
+                ddlStatus.SelectedIndex = ddlStatus.Items.IndexOf(ddlStatus.Items.FindByValue("" + q.statusID));
+                var k = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
+                txtcommentaar.Text = ("" + k.opmerking);
+            }
+        }
+
+        protected void statusChanged(Object sender, EventArgs e) {
+            if (ddlSelecteerKlas.SelectedValue != null && ddlStatus.SelectedValue != null) {
+                Boekenlijst b = dc.Boekenlijsts.First(x=>x.klas == ddlSelecteerKlas.SelectedValue);
+                try
+                {
+                    b.statusID = Convert.ToInt32(ddlStatus.SelectedItem.Value);
+                    dc.SubmitChanges();
+                }
+                catch (LinqDataSourceValidationException fts) { 
+                }
+            }
+        }
+
+        protected void btnSlaOpmerkingOp_Click(object sender, EventArgs e)
+        {
+            if (ddlSelecteerKlas.SelectedValue != null) {
+                Boekenlijst b = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
+                try
+                {
+                    b.opmerking = txtcommentaar.Text;
+                    dc.SubmitChanges();
+                }
+                catch (LinqDataSourceValidationException ffts)
+                {
+                }
+            }
         }
 
     }

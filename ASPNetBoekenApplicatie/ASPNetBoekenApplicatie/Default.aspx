@@ -95,7 +95,8 @@
         <br />
         Klas:
         <asp:DropDownList ID="ddlSelecteerKlas" runat="server" AutoPostBack="True" DataSourceID="klasddl"
-            DataTextField="klas" DataValueField="klas">
+            DataTextField="klas" DataValueField="klas" 
+            onselectedindexchanged="selecteerKlasIndexChanged">
         </asp:DropDownList>
         <asp:LinqDataSource ID="klasddl" runat="server" ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext"
             EntityTypeName="" Select="new (klas)" TableName="Boekenlijsts">
@@ -154,6 +155,24 @@
         </asp:LinqDataSource>
         <asp:Button ID="btnAddBoek" runat="server" OnClick="btnAddBoek_Click" Text="&gt;&gt;" />
         <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="&lt;&lt;" />
+    </p>
+    <p style="width: 938px">
+        Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="True" 
+            DataSourceID="statussen" DataTextField="naam" DataValueField="statusID" 
+            onselectedindexchanged="statusChanged">
+        </asp:DropDownList>
+        <asp:LinqDataSource ID="statussen" runat="server" 
+            ContextTypeName="ASPNetBoekenApplicatie.BoekenLinqToSqlDataContext" 
+            EntityTypeName="" TableName="Status">
+        </asp:LinqDataSource>
+    </p>
+    <p style="width: 938px">
+        Opmerking:
+        <asp:TextBox ID="txtcommentaar" runat="server" Height="55px" 
+            TextMode="MultiLine"></asp:TextBox>
+        <asp:Button ID="btnSlaOpmerkingOp" runat="server" 
+            onclick="btnSlaOpmerkingOp_Click" Text="Save opmerking" />
     </p>
     <table class="ondersteTable">
         <tr>
