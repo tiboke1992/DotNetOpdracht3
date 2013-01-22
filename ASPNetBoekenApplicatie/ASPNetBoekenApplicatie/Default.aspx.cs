@@ -12,7 +12,24 @@ namespace ASPNetBoekenApplicatie
         BoekenLinqToSqlDataContext dc = new BoekenLinqToSqlDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("Account/Login.aspx");
+            }
+            else {
+                if (User.IsInRole("klastitularis") || User.IsInRole("boekenlijstverantwoordelijke"))
+                {
+                    if (User.IsInRole("klastitularis")) {
+                        lblCorrect.Text = "Klastitularis";
+                    }
+                    else if (User.IsInRole("boekenlijstverantwoordelijke")) {
+                        lblCorrect.Text = "BoekenLijstVerantwoordelijke";
+                    }
+                }
+                else {
+                    Response.Redirect("Account/Login.aspx");
+                }
+            }
         }
 
         protected void Page_PreRenderComplete(Object sender, EventArgs e) {
@@ -21,6 +38,7 @@ namespace ASPNetBoekenApplicatie
                 ddlStatus.SelectedIndex = ddlStatus.Items.IndexOf(ddlStatus.Items.FindByValue("" + q.statusID));
                 var k = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
                 txtcommentaar.Text = (""+k.opmerking);
+                initializeUser();
             }
         }
 
@@ -309,6 +327,9 @@ namespace ASPNetBoekenApplicatie
                 ddlStatus.SelectedIndex = ddlStatus.Items.IndexOf(ddlStatus.Items.FindByValue("" + q.statusID));
                 var k = dc.Boekenlijsts.First(x => x.klas == ddlSelecteerKlas.SelectedValue);
                 txtcommentaar.Text = ("" + k.opmerking);
+                if (User.IsInRole("klastitularis")) {
+                    KlasIndexWijzigtPermissions();
+                }
             }
         }
 
@@ -340,5 +361,66 @@ namespace ASPNetBoekenApplicatie
             }
         }
 
+        private void initializeUser() {
+            if (User.IsInRole("klastitularis"))
+            {
+                btnCreateKlas.Enabled = false;
+                btnCreateKlas.Visible = false;
+                lblAantalLeerlingen.Visible = false;
+                txtAantalLeerlingen.Visible = false;
+                lblGebaseertOpKlasLijst.Visible = false;
+                ddlGebaseerd.Visible = false;
+                cbBasedOn.Visible = false;
+                txtKlasNaam.Visible = false;
+                lblKlasNaam.Visible = false;
+                //standaar zijn klas zetten;
+                KlasIndexWijzigtPermissions();
+            }
+        }
+
+        private void KlasIndexWijzigtPermissions() { 
+            //als het zijn klas is die geselecteerd is dan moogde het editable maken anders ni
+            String naam = User.Identity.Name;
+            Titulari s = dc.Titularis.First(x=>x.username == naam);
+            String klas = s.klas;
+            //checke als het zijn klas ni is dan de remove en de add buttons disabelen
+            if (ddlSelecteerKlas.SelectedValue == klas)
+            {
+                GridView2.Enabled = true;
+                btnAddBoek.Enabled = true;
+                btnRemove.Enabled = true;
+                btnAddBoek.Visible = true;
+                btnRemove.Visible = true;
+                ddlStatus.Enabled = true;
+                txtcommentaar.Enabled = true;
+                btnSlaOpmerkingOp.Visible = true;
+                btnSlaOpmerkingOp.Enabled = true;
+                GridView3.Enabled = true;
+                GridView4.Enabled = true;
+                btnAddArtikel.Enabled = true;
+                btnAddArtikel.Visible = true;
+                btnRemoveArtikel.Visible = true;
+                btnRemoveArtikel.Enabled = true;
+            }
+            else {
+                GridView2.Enabled = false;
+                btnAddBoek.Enabled = false;
+                btnRemove.Enabled = false;
+                btnAddBoek.Visible = false;
+                btnRemove.Visible = false;
+                ddlStatus.Enabled = false;
+                txtcommentaar.Enabled = false;
+                btnSlaOpmerkingOp.Visible = false;
+                btnSlaOpmerkingOp.Enabled = false;
+                GridView3.Enabled = false;
+                GridView4.Enabled = false;
+                btnAddArtikel.Enabled = false;
+                btnRemoveArtikel.Enabled = false;
+                btnAddArtikel.Visible = false;
+                btnRemoveArtikel.Visible = false;
+            }
+            
+            //alst zijn klas wel is dan moet ge ze enabelen
+        }
     }
 }

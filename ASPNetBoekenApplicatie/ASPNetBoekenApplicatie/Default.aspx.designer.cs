@@ -85,6 +85,15 @@ namespace ASPNetBoekenApplicatie {
         protected global::System.Web.UI.WebControls.LinqDataSource boeken_links_ids;
         
         /// <summary>
+        /// lblKlasNaam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblKlasNaam;
+        
+        /// <summary>
         /// txtKlasNaam control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace ASPNetBoekenApplicatie {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtKlasNaam;
+        
+        /// <summary>
+        /// lblAantalLeerlingen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAantalLeerlingen;
         
         /// <summary>
         /// txtAantalLeerlingen control.
@@ -110,6 +128,15 @@ namespace ASPNetBoekenApplicatie {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbBasedOn;
+        
+        /// <summary>
+        /// lblGebaseertOpKlasLijst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGebaseertOpKlasLijst;
         
         /// <summary>
         /// ddlGebaseerd control.
@@ -211,6 +238,15 @@ namespace ASPNetBoekenApplicatie {
         protected global::System.Web.UI.WebControls.Button btnRemove;
         
         /// <summary>
+        /// lblStatuss control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatuss;
+        
+        /// <summary>
         /// ddlStatus control.
         /// </summary>
         /// <remarks>
@@ -227,6 +263,15 @@ namespace ASPNetBoekenApplicatie {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource statussen;
+        
+        /// <summary>
+        /// lblOpmerking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOpmerking;
         
         /// <summary>
         /// txtcommentaar control.

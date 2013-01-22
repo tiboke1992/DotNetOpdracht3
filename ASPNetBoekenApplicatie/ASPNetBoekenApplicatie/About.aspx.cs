@@ -12,6 +12,21 @@ namespace ASPNetBoekenApplicatie
         BoekenLinqToSqlDataContext dc = new BoekenLinqToSqlDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("Account/Login.aspx");
+            }
+            else
+            {
+                if (User.IsInRole("klastitularis") || User.IsInRole("boekenlijstverantwoordelijke"))
+                {
+            
+                }
+                else
+                {
+                    Response.Redirect("Account/Login.aspx");
+                }
+            }
             var q1 = from cats in dc.Categories
                      join boek in dc.Boeks on cats.categorieID equals boek.categorieID
                      group cats by cats.naam into gg

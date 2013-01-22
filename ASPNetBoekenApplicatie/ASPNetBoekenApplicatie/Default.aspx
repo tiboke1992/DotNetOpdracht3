@@ -74,13 +74,15 @@
             </WhereParameters>
         </asp:LinqDataSource>
         <br />
-        Klas Naam:
-        <asp:TextBox ID="txtKlasNaam" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp; Aantal leerlingen:
+        <asp:Label ID="lblKlasNaam" runat="server" Text="Klas naam"></asp:Label>
+&nbsp;<asp:TextBox ID="txtKlasNaam" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="lblAantalLeerlingen" runat="server" Text="Aantal Leerlingen"></asp:Label>
         <asp:TextBox ID="txtAantalLeerlingen" runat="server" Width="37px"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;
         <asp:CheckBox ID="cbBasedOn" runat="server" Text=" " />
-        Gebaseerd op klaslijst:
+        &nbsp;<asp:Label ID="lblGebaseertOpKlasLijst" runat="server" 
+            Text="Gebaseerd op klasLijst:"></asp:Label>
         <asp:DropDownList ID="ddlGebaseerd" runat="server" DataSourceID="klassen" DataTextField="klas"
             DataValueField="klas">
         </asp:DropDownList>
@@ -157,7 +159,8 @@
         <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="&lt;&lt;" />
     </p>
     <p style="width: 938px">
-        Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<asp:Label ID="lblStatuss" runat="server" Text="Status:"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="True" 
             DataSourceID="statussen" DataTextField="naam" DataValueField="statusID" 
             onselectedindexchanged="statusChanged">
@@ -168,7 +171,7 @@
         </asp:LinqDataSource>
     </p>
     <p style="width: 938px">
-        Opmerking:
+        &nbsp;<asp:Label ID="lblOpmerking" runat="server" Text="Opmerking"></asp:Label>
         <asp:TextBox ID="txtcommentaar" runat="server" Height="55px" 
             TextMode="MultiLine"></asp:TextBox>
         <asp:Button ID="btnSlaOpmerkingOp" runat="server" 
